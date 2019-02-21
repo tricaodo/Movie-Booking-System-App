@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<BorderPane xmlns="http://javafx.com/javafx/8.0.171"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="sample.AddmovieController"
+            styleClass="addmovieBorderPane"
+            fx:id="mainBorderPane">
+    <left>
+        <GridPane alignment="CENTER" hgap="10" prefWidth="321.0" vgap="10">
+            <ImageView fitHeight="150" fitWidth="100" GridPane.columnIndex="1" GridPane.columnSpan="2"
+                       fx:id="posterImage">
+                <Image url="@/sample/images/defaultPoster1.png"/>
+                <GridPane.margin>
+                    <Insets left="20.0"/>
+                </GridPane.margin>
+            </ImageView>
+            <Button layoutX="92.0" layoutY="15.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="311.0"
+                    text="Upload Photo" GridPane.columnIndex="0"
+                    GridPane.columnSpan="2" GridPane.rowIndex="1"
+                    onAction="#uploadImageClick" styleClass="addMovieBtn"/>
+
+            <Label text="Title: " GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+            <TextField fx:id="titleField" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+
+            <Label text="Description: " GridPane.columnIndex="0" GridPane.rowIndex="3"/>
+            <TextArea fx:id="descField" prefWidth="223.0" GridPane.columnIndex="1" GridPane.rowIndex="3" wrapText="true" prefRowCount="3"/>
+
+            <Label text="Date: " GridPane.columnIndex="0" GridPane.rowIndex="4"/>
+            <DatePicker fx:id="datePicker" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
+
+            <Label text="Time: " GridPane.columnIndex="0" GridPane.rowIndex="5"/>
+            <TextField fx:id="timeField" GridPane.columnIndex="1" GridPane.rowIndex="5"/>
+            <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnSpan="2" GridPane.rowIndex="6">
+                <children>
+                    <Button onAction="#addMovie" mnemonicParsing="false" prefHeight="30.0" prefWidth="311.0"
+                             text="Add Movie" styleClass="addMovieBtn" />
+                </children>
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnSpan="2" GridPane.rowIndex="7" spacing="10">
+                <children>
+                    <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="311.0"
+                            text="Go Back"
+                            styleClass="addMovieBtn" onAction="#back"/>
+                    <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="311.0"
+                            text="Cancel"
+                            styleClass="addMovieBtn" onAction="#cancel"/>
+                </children>
+            </HBox>
+            <columnConstraints>
+                <ColumnConstraints/>
+                <ColumnConstraints/>
+                <ColumnConstraints/>
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints/>
+                <RowConstraints/>
+                <RowConstraints/>
+                <RowConstraints/>
+                <RowConstraints/>
+                <RowConstraints/>
+                <RowConstraints minHeight="10.0" prefHeight="30.0"/>
+                <RowConstraints minHeight="10.0" prefHeight="30.0"/>
+            </rowConstraints>
+            <BorderPane.margin>
+                <Insets left="10.0" top="0"/>
+            </BorderPane.margin>
+        </GridPane>
+    </left>
+
+    <center>
+        <TableView prefHeight="500.0" prefWidth="485.0" style="-fx-focus-color: transparent; -fx-text-fill: white;"
+                   BorderPane.alignment="CENTER" fx:id="tableView" styleClass="table-view">
+            <columnResizePolicy>
+                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
+            </columnResizePolicy>
+            <columns>
+
+                <TableColumn text="Title">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="title"/>
+                    </cellValueFactory>
+                </TableColumn>
+
+                <TableColumn text="Date">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="date"/>
+                    </cellValueFactory>
+                </TableColumn>
+
+                <TableColumn text="Time">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="time"/>
+                    </cellValueFactory>
+                </TableColumn>
+            </columns>
+        </TableView>
+    </center>
+</BorderPane>

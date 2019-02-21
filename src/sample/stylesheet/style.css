@@ -1,0 +1,120 @@
+
+.hoverlabel: hover{
+    -fx-text-fill: "#89b4ff";
+
+}
+.hoverlabel{
+    -fx-focus-color: transparent;
+    -fx-background-color: "#333333";
+    -fx-font-size: 10;
+    -fx-text-fill: "#e2e2e2";
+}
+
+.addMovieBtn{
+    -fx-background-color: "#8f9193";
+    -fx-text-fill: "#ededed";
+}
+
+.addMovieBtn: hover{
+    -fx-background-color: "#156277";
+}
+
+
+.addmovieBorderPane .label{
+    -fx-font-family: "Times New Roman";
+    -fx-font-weight: bold;
+    -fx-font-size: 14;
+    -fx-text-fill: #ededed;
+}
+
+.menu-item .label{
+    -fx-text-fill: black;
+}
+
+.addmovieBorderPane{
+    -fx-background-color: #333333;
+}
+
+.table-view .column-header .label{
+
+    -fx-text-fill: #333333;
+}
+
+.headerBtn{
+    -fx-font-family: "Times New Roman";
+    -fx-background-color: transparent;
+    -fx-text-fill: #d4d4d4;
+    -fx-text-size: 13;
+    -fx-font-weight: bold;
+}
+
+.headerBtn: hover{
+    -fx-text-fill: #5fc5e4;
+}
+
+
+/************************* Login Form *************************/
+#filmIcon{
+    -fx-graphic: url("../images/login_bg.png");
+}
+
+#loginGridPane{
+    -fx-background-color: #333333;
+}
+
+/************************* Movie List Pane *************************/
+#gridPane .button{
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: #333333;
+    -fx-border-style: none;
+    -fx-background-color: #333333;
+}
+
+#movieListPane .scroll-pane{
+    -fx-background-color: #333333;
+}
+
+#movieListPane .scroll-bar:vertical .track{
+    -fx-background-color: #444444;
+}
+
+#movieListPane .scroll-bar:vertical{
+    -fx-background-color: transparent;
+}
+
+#movieListPane .scroll-bar:vertical .increment-button: hover,
+#movieListPane .scroll-bar:vertical .decrement-button: hover{
+    -fx-background-color:transparent;
+}
+
+#movieListPane .scroll-bar:vertical .thumb{
+    -fx-background-color: #878787;
+}
+
+/************************* Profile *************************/
+.welcomePane{
+    -fx-background-image: url("../images/welcome.png");
+    -fx-background-position: center center;
+    -fx-background-repeat:no-repeat;
+    -fx-background-size: 230, 230;
+    -fx-background-color: #4a4a4a;
+}
+/************************* Dashboard *************************/
+.dashboardMain{
+    -fx-background-color: #333333;
+}
+
+.dashboardMain .button{
+    -fx-background-color:#474747;
+        -fx-focus-color: transparent;
+        -fx-faint-focus-color: #878787;
+        -fx-border-style: none;
+        -fx-background-insets: 0 0 -1 0, 0, 1, 2;
+}
+
+.dashboardMain .button: hover{
+    -fx-background-color:#878787;
+
+}
+
+

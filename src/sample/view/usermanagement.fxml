@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="sample.UserController"
+            prefHeight="400.0" prefWidth="600.0">
+    <TableView fx:id="userManagementTableView" prefHeight="400.0" prefWidth="600.0" styleClass="addmovieBorderPane">
+        <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+        </columnResizePolicy>
+        <columns>
+            <TableColumn text="First Name">
+                <cellValueFactory>
+                    <PropertyValueFactory property="firstName" />
+                </cellValueFactory>
+            </TableColumn>
+        </columns>
+
+        <columns>
+            <TableColumn text="Last Name">
+                <cellValueFactory>
+                    <PropertyValueFactory property="lastName" />
+                </cellValueFactory>
+            </TableColumn>
+        </columns>
+
+        <columns>
+            <TableColumn text="Username">
+                <cellValueFactory>
+                    <PropertyValueFactory property="username" />
+                </cellValueFactory>
+            </TableColumn>
+        </columns>
+
+        <columns>
+            <TableColumn text="Email">
+                <cellValueFactory>
+                    <PropertyValueFactory property="email" />
+                </cellValueFactory>
+            </TableColumn>
+        </columns>
+
+        <columns>
+            <TableColumn text="Password">
+                <cellValueFactory>
+                    <PropertyValueFactory property="password" />
+                </cellValueFactory>
+            </TableColumn>
+        </columns>
+
+        <columns>
+            <TableColumn text="Authority">
+                <cellValueFactory>
+                    <PropertyValueFactory property="authority" />
+                </cellValueFactory>
+            </TableColumn>
+        </columns>
+    </TableView>
+</AnchorPane>

@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+
+
+<?import javafx.scene.shape.Circle?>
+
+<AnchorPane prefHeight="400.0" prefWidth="701.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.ProfileController">
+   <children>
+      <GridPane alignment="CENTER" hgap="10" prefHeight="403.0" prefWidth="283.0"
+                styleClass="addmovieBorderPane" vgap="10" gridLinesVisible="true"
+                maxWidth="283" minWidth="283">
+    <columnConstraints>
+        <ColumnConstraints halignment="CENTER"/>
+    </columnConstraints>
+         <children>
+             <Circle fill="beige" radius="45" stroke="black" fx:id="circleImage"
+                GridPane.rowIndex="0" GridPane.columnIndex="0" GridPane.columnSpan="2"/>
+
+             <Button layoutX="92.0" layoutY="15.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="260.0"
+                     text="Upload Photo" GridPane.columnIndex="0"
+                     GridPane.columnSpan="2" GridPane.rowIndex="1"
+                     onAction="#uploadImageClick" styleClass="addMovieBtn"/>
+
+             <Label text="Username:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+            <TextField fx:id="usernameField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+
+             <Label text="First Name:" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+             <TextField fx:id="lastField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+
+             <Label text="Last Name:" GridPane.columnIndex="0" GridPane.rowIndex="4" />
+             <TextField fx:id="firstField" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+
+             <Label text="Email:" GridPane.columnIndex="0" GridPane.rowIndex="5" />
+             <TextField fx:id="emailField" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+
+             <Label text="Password:" GridPane.columnIndex="0" GridPane.rowIndex="6" />
+             <TextField fx:id="passwordField" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+
+            <HBox alignment="CENTER" spacing="5" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="7" prefWidth="260">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#saveInformation" prefWidth="130" styleClass="addMovieBtn" text="Save" />
+                  <Button mnemonicParsing="false" onAction="#cancel" prefWidth="130" styleClass="addMovieBtn" text="Cancel" />
+               </children>
+            </HBox>
+
+             <HBox alignment="CENTER" spacing="5" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="8" prefWidth="260">
+                 <children>
+                     <Button mnemonicParsing="false" onAction="#showBookingHistory" prefWidth="260" styleClass="addMovieBtn" text="Booking History" />
+                 </children>
+             </HBox>
+               </children>
+
+      </GridPane>
+      <Pane layoutX="284.0" prefHeight="403.0" prefWidth="417.0" styleClass="welcomePane">
+          <TableView fx:id="bookingHistoryView" prefHeight="400.0" prefWidth="416.0" visible="false" GridPane.fillWidth="416">
+              <columnResizePolicy>
+                  <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+              </columnResizePolicy>
+              <columns>
+                  <TableColumn text="Movie">
+                      <cellValueFactory>
+                          <PropertyValueFactory property="movieTitle" />
+                      </cellValueFactory>
+                  </TableColumn>
+              </columns>
+
+              <columns>
+                  <TableColumn text="Date">
+                      <cellValueFactory>
+                          <PropertyValueFactory property="date" />
+                      </cellValueFactory>
+                  </TableColumn>
+              </columns>
+
+              <columns>
+                  <TableColumn text="Time">
+                      <cellValueFactory>
+                          <PropertyValueFactory property="time" />
+                      </cellValueFactory>
+                  </TableColumn>
+              </columns>
+
+              <columns>
+                  <TableColumn text="Seat">
+                      <cellValueFactory>
+                          <PropertyValueFactory property="seat" />
+                      </cellValueFactory>
+                  </TableColumn>
+              </columns>
+          </TableView>
+
+      </Pane>
+      <Separator layoutX="282.0" orientation="VERTICAL" prefHeight="403.0" prefWidth="6.0" />
+   </children>
+</AnchorPane>
