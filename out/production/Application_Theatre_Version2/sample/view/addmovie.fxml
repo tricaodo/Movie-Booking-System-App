@@ -17,48 +17,53 @@
 <?import javafx.scene.layout.RowConstraints?>
 
 <?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.scene.control.ComboBox?>
 <BorderPane xmlns="http://javafx.com/javafx/8.0.171"
             xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="sample.AddmovieController"
             styleClass="addmovieBorderPane"
             fx:id="mainBorderPane">
     <left>
-        <GridPane alignment="CENTER" hgap="10" prefWidth="321.0" vgap="10">
-            <ImageView fitHeight="150" fitWidth="100" GridPane.columnIndex="1" GridPane.columnSpan="2"
-                       fx:id="posterImage">
-                <Image url="@/sample/images/defaultPoster1.png"/>
-                <GridPane.margin>
-                    <Insets left="20.0"/>
-                </GridPane.margin>
-            </ImageView>
-            <Button layoutX="92.0" layoutY="15.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="311.0"
+        <GridPane alignment="CENTER" hgap="10" prefWidth="280.0" vgap="10" gridLinesVisible="true">
+
+            <HBox  GridPane.columnIndex="0" GridPane.columnSpan="3" GridPane.rowIndex="0" alignment="CENTER" prefWidth="280">
+                <ImageView fitHeight="150" fitWidth="100"
+                           fx:id="posterImage">
+                    <Image url="@/sample/images/defaultPoster1.png"/>
+
+                </ImageView>
+            </HBox>
+            <Button layoutX="92.0" layoutY="15.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="280.0"
                     text="Upload Photo" GridPane.columnIndex="0"
-                    GridPane.columnSpan="2" GridPane.rowIndex="1"
+                    GridPane.columnSpan="3" GridPane.rowIndex="1"
                     onAction="#uploadImageClick" styleClass="addMovieBtn"/>
 
             <Label text="Title: " GridPane.columnIndex="0" GridPane.rowIndex="2"/>
-            <TextField fx:id="titleField" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+            <TextField fx:id="titleField" GridPane.columnIndex="1" GridPane.rowIndex="2" GridPane.columnSpan="2"/>
 
             <Label text="Description: " GridPane.columnIndex="0" GridPane.rowIndex="3"/>
-            <TextArea fx:id="descField" prefWidth="223.0" GridPane.columnIndex="1" GridPane.rowIndex="3" wrapText="true" prefRowCount="3"/>
+            <TextArea fx:id="descField" GridPane.columnIndex="1" GridPane.rowIndex="3" wrapText="true" prefRowCount="3" GridPane.columnSpan="2"/>
 
             <Label text="Date: " GridPane.columnIndex="0" GridPane.rowIndex="4"/>
-            <DatePicker fx:id="datePicker" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
+            <DatePicker fx:id="datePicker" GridPane.columnIndex="1" GridPane.rowIndex="4" GridPane.columnSpan="3" prefWidth="186"/>
 
             <Label text="Time: " GridPane.columnIndex="0" GridPane.rowIndex="5"/>
-            <TextField fx:id="timeField" GridPane.columnIndex="1" GridPane.rowIndex="5"/>
-            <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnSpan="2" GridPane.rowIndex="6">
+            <!--<TextField fx:id="timeField" GridPane.columnIndex="1" GridPane.rowIndex="5"/>-->
+            <ComboBox fx:id="hourBox" value="hours" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <ComboBox fx:id="minutesBox" value="minute" GridPane.columnIndex="2" GridPane.rowIndex="5"/>
+
+            <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnSpan="3" GridPane.rowIndex="6" >
                 <children>
-                    <Button onAction="#addMovie" mnemonicParsing="false" prefHeight="30.0" prefWidth="311.0"
+                    <Button onAction="#addMovie" mnemonicParsing="false" prefHeight="30.0" prefWidth="280.0"
                              text="Add Movie" styleClass="addMovieBtn" />
                 </children>
             </HBox>
-            <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnSpan="2" GridPane.rowIndex="7" spacing="10">
+            <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnSpan="3" GridPane.rowIndex="7" spacing="10">
                 <children>
-                    <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="311.0"
+                    <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="260.0"
                             text="Go Back"
                             styleClass="addMovieBtn" onAction="#back"/>
-                    <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="311.0"
+                    <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="260.0"
                             text="Cancel"
                             styleClass="addMovieBtn" onAction="#cancel"/>
                 </children>

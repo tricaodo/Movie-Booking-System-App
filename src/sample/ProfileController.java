@@ -44,23 +44,25 @@ public class ProfileController {
     private User user;
     private Image profileImage;
 
+    private final String default_image = "file:/Users/trido/Desktop/JavaProject/Application_Theatre_Version2/src/sample/picture/user-default.png";
+
     public void initialize(User currentUser){
-//        profileImage = new Image(currentUser.getImagePath());
         user = currentUser;
+
+        path = currentUser.getImagePath();
+        profileImage = new Image("file:" + path);
 
         usernameField.setText(currentUser.getUsername());
         lastField.setText(currentUser.getLastName());
         firstField.setText(currentUser.getFirstName());
         emailField.setText(currentUser.getEmail());
         passwordField.setText(currentUser.getPassword());
-        System.out.println(currentUser.getImagePath());
-        if(currentUser.getImagePath() == null){
 
+        if(path != null){
+            circleImage.setFill(new ImagePattern(profileImage));
         }else{
-//            circleImage.setFill(new ImagePattern(new Image("file:"+profileImage)));
+            circleImage.setFill(new ImagePattern(new Image(default_image)));
         }
-
-
 
         bookingHistoryView.setItems(Datasource.getInstance().queryBookingHistory(user.getId()));
     }
@@ -82,16 +84,18 @@ public class ProfileController {
         String lastName = lastField.getText();
         String email = emailField.getText();
         String password = passwordField.getText();
+        // copy image and save the default image url
+        copyProfilePicture();
 
         user.setFirstName(firstName);
         user.setLastName(lastName);
         user.setUsername(username);
         user.setPassword(password);
         user.setEmail(email);
+        user.setImagePath(path);
 
-        System.out.println(path);
         if(Datasource.getInstance().updateUser(firstName, lastName, username, password, email, user.getId(), path)){
-            copyProfilePicture();
+
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Update Information");
             alert.setContentText("Update Information Successfully");
@@ -137,6 +141,7 @@ public class ProfileController {
 
         Path source = Paths.get(path);
         Path destination = Paths.get("//Users//trido//Desktop//JavaProject//Application_Theatre_Version2//src//sample//picture//" + source.getFileName());
+        path = destination.toString();
         try {
             Files.copy(source, destination);
         }catch (IOException e){

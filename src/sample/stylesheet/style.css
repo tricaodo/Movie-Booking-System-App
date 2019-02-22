@@ -21,9 +21,9 @@
 
 
 .addmovieBorderPane .label{
-    -fx-font-family: "Times New Roman";
+
     -fx-font-weight: bold;
-    -fx-font-size: 14;
+    -fx-font-size: 12;
     -fx-text-fill: #ededed;
 }
 

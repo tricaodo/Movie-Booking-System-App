@@ -1,4 +1,6 @@
 package sample;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -35,21 +37,21 @@ public class EditmovieController {
     private TextArea descField;
     @FXML
     private DatePicker datePicker;
+
     @FXML
-    private TextField timeField;
-
-
+    private ComboBox<String> hourBox;
+    @FXML
+    private ComboBox<String> minuteBox;
 
     private DateTimeFormatter DATEFORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-
+    private ObservableList<String> listHours = FXCollections.observableArrayList();
+    private ObservableList<String> listMinutes = FXCollections.observableArrayList("00", "15", "30", "45");
 
     private String path;
     private String absPath;
     private int movieId;
-
     @FXML
     public void uploadImageClick(ActionEvent event) throws IOException {
-
         try {
             FileChooser fc = new FileChooser();
             selectedImage = fc.showOpenDialog(null);
@@ -74,13 +76,25 @@ public class EditmovieController {
     }
 
     public void processResult(Movie movie){
-        System.out.println(movie.getTitle());
+
+        generateTime(listHours, 0, 23);
+        hourBox.setItems(listHours);
+        minuteBox.setItems(listMinutes);
+
         movieId = movie.getId();
         titleField.setText(movie.getTitle());
         descField.setText(movie.getDescription());
         LocalDate ld = LocalDate.parse(movie.getDate(), DATEFORMATTER);
         datePicker.setValue(ld);
-        timeField.setText(movie.getTime());
+
+        String time = movie.getTime();
+        String[]timedata = time.split(":");
+        String hour = timedata[0];
+        String minute = timedata[1];
+
+        hourBox.getSelectionModel().select(hour);
+        minuteBox.getSelectionModel().select(minute);
+
         path = movie.getUrl();
         posterImage.setImage(new Image("file:" + path));
     }
@@ -90,7 +104,7 @@ public class EditmovieController {
         String title = titleField.getText();
         String desc = descField.getText();
         String date = datePicker.getValue().toString();
-        String time = timeField.getText();
+        String time = hourBox.getValue() + ":" + minuteBox.getValue();
 
         if(Datasource.getInstance().updateMovieById(movieId, title, desc, date, time, path)){
             copyFilmPoster();
@@ -113,4 +127,9 @@ public class EditmovieController {
 
     }
 
+    public void generateTime(ObservableList<String> observableList, int start, int end){
+        for(int i = start; i <= end; i++){
+            observableList.add(String.format("%02d", i));
+        }
+    }
 }

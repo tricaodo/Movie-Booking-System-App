@@ -1,13 +1,12 @@
 package sample;
 
 import javafx.application.Platform;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -24,7 +23,6 @@ import java.util.Optional;
 import javax.imageio.ImageIO;
 import javafx.embed.swing.SwingFXUtils;
 
-import javafx.stage.Stage;
 import sample.model.Datasource;
 import sample.model.Movie;
 
@@ -46,15 +44,27 @@ public class AddmovieController {
     private TableView<Movie> tableView;
     @FXML
     private BorderPane mainBorderPane;
+    @FXML
+    private ComboBox<String> hourBox;
+    @FXML
+    private ComboBox<String> minutesBox;
 
     private String absPath = "";
     private String pathInDB = "";
 
     private ObservableList<Movie> movies;
+    private ObservableList<String> listHours = FXCollections.observableArrayList();
+    private ObservableList<String> listMinutes = FXCollections.observableArrayList("00", "15", "30", "45");
 
     private ContextMenu contextMenu;
 
     public void initialize(){
+
+        // generate time
+        generateTime(listHours, 0, 23);
+        hourBox.setItems(listHours);
+        minutesBox.setItems(listMinutes);
+
         movies = Datasource.getInstance().listMovies();
         tableView.setItems(movies);
         contextMenu = new ContextMenu();
@@ -68,7 +78,6 @@ public class AddmovieController {
         });
 
         contextMenu.getItems().add(deleteMenuItem);
-
         tableView.setOnMousePressed(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
@@ -110,12 +119,16 @@ public class AddmovieController {
         System.out.println("Title: " + title);
         String desc = descField.getText();
         String date = null;
+
+        String valueHour = hourBox.getValue();
+        String valueMinute = minutesBox.getValue();
+        String time = (valueHour + ":" + valueMinute);
+
         if(datePicker.getValue() != null){
             date = datePicker.getValue().toString();
         }
-        String time = timeField.getText();
 
-        if(title.isEmpty() || desc.isEmpty() || date == null || time.isEmpty() || absPath.equals("")){
+        if(title.isEmpty() || desc.isEmpty() || date == null || absPath.equals("")){
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
             alert.setHeaderText("Warning");
@@ -206,7 +219,6 @@ public class AddmovieController {
         titleField.setText("");
         descField.setText("");
         datePicker.setValue(null);
-        timeField.setText("");
     }
 
     public void deleteMovie(Movie movie){
@@ -214,14 +226,18 @@ public class AddmovieController {
         alert.setTitle("Delete Movie");
         alert.setContentText("Do you want to delete movie: " + movie.getTitle() );
         Optional<ButtonType> results = alert.showAndWait();
-        if(results.isPresent() && results.get() == ButtonType.OK){
-            if(Datasource.getInstance().deleteMovieById(movie.getId())){
+        if(results.isPresent() && results.get() == ButtonType.OK) {
+            if (Datasource.getInstance().deleteMovieById(movie.getId())) {
                 deleteFilmPoster(movie.getUrl());
                 refreshTable();
             }
         }
-
-        
-
     }
+
+    public void generateTime(ObservableList<String> observableList, int start, int end){
+        for(int i = start; i <= end; i++){
+            observableList.add(String.format("%02d", i));
+        }
+    }
+
 }
