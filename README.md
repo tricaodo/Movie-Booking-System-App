@@ -1,5 +1,7 @@
 # movie-booking-system
-I'm using Java and JavaFX for this application. The customers can book the show that they want. They also edit their profiles (also upload their image). Beside that, the employees can edit, upload, delete and manage the movies, booked shows. This application also used sqlite database to save all data as well as easily to keep track. In order to make the application more attractive, I am using css to style the user interface.
+Built in mainly with <b>Java</b>, UI with <b>JavaFX</b>, and <b>SQLITE</b> as persistent database. This app has full functionalities accompanying with beautiful design in order to improve UX. The customers can select the show as they desire. They also edit their profiles (also upload their image). Beside that, the employees can edit, upload, delete and manage the movies, booked shows.
+
+<h3></h3>
 
 What I have learned in this project:
   - Design pattern: singleton
