@@ -1,4 +1,4 @@
-# movie-booking-system
+# Movie-Booking-System
 Built in mainly with <b>Java</b>, UI with <b>JavaFX</b>, and <b>SQLITE</b> as persistent database. This app has full functionalities accompanying with beautiful design in order to improve UX. The customers can select the show as they desire. They also edit their profiles (also upload their image). Beside that, the employees can edit, upload, delete and manage the movies, booked shows.
 
 <h3></h3>
